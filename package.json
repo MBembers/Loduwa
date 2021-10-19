@@ -1,0 +1,28 @@
+{
+  "name": "loduwa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.4.4",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.1"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.2.6"
+  },
+  "scripts": {
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MBembers/Loduwa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MBembers/Loduwa/issues"
+  },
+  "homepage": "https://github.com/MBembers/Loduwa#readme"
+}
