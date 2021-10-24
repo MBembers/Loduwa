@@ -16,7 +16,17 @@
   \********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _consts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./consts */ \"./src/consts.ts\");\n\nvar sus = _consts__WEBPACK_IMPORTED_MODULE_0__[\"default\"].debil;\nconsole.log(\"amogus\", sus);\n\n\n//# sourceURL=webpack://loduwa/./src/App.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Fridge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Fridge */ \"./src/Fridge.ts\");\n\r\nvar F;\r\ndocument.querySelector(\"#start\").addEventListener(\"click\", function () {\r\n    var name = document.querySelector(\"#fridge-inp\").value;\r\n    F = new _Fridge__WEBPACK_IMPORTED_MODULE_0__.Fridge(name);\r\n}, { once: true });\r\nconsole.log(\"halo ee aa\");\r\n\n\n//# sourceURL=webpack:///./src/App.ts?");
+
+/***/ }),
+
+/***/ "./src/Fridge.ts":
+/*!***********************!*\
+  !*** ./src/Fridge.ts ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Fridge\": () => (/* binding */ Fridge)\n/* harmony export */ });\n/* harmony import */ var _consts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./consts */ \"./src/consts.ts\");\n\r\nvar Fridge = /** @class */ (function () {\r\n    function Fridge(name) {\r\n        this.label = document.querySelector(\"#f-name\");\r\n        this.name = name;\r\n        this.label.innerText = this.name;\r\n        _consts__WEBPACK_IMPORTED_MODULE_0__[\"default\"].root.style.setProperty(\"--overlay-display\", \"none\");\r\n    }\r\n    return Fridge;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack:///./src/Fridge.ts?");
 
 /***/ }),
 
@@ -26,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _con
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n    debil: \"sus\",\n});\n\n\n//# sourceURL=webpack://loduwa/./src/consts.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\r\n    debil: \"sus\",\r\n    root: document.documentElement,\r\n});\r\n\n\n//# sourceURL=webpack:///./src/consts.ts?");
 
 /***/ })
 
