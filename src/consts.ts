@@ -4,5 +4,6 @@ export interface MagnetOpt {
   y: number;
   height: number;
   width: number;
+  zIndex: number;
   text: string;
 }

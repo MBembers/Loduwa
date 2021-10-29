@@ -11,6 +11,7 @@ export default class Magnet {
   isResized: boolean;
   height: number;
   width: number;
+  zIndex: number;
   text: string;
   element: HTMLDivElement;
   deleteButton: HTMLDivElement;
@@ -24,6 +25,7 @@ export default class Magnet {
       this.y = options.y;
       this.height = options.height;
       this.width = options.width;
+      this.zIndex = options.zIndex;
       this.text = options.text;
     } else {
       this.id = id;
@@ -31,6 +33,7 @@ export default class Magnet {
       this.y = 200;
       this.width = 250;
       this.height = 250;
+      this.zIndex = id;
       this.text = "essa";
     }
     this.element = document.createElement("div");
@@ -54,7 +57,7 @@ export default class Magnet {
     this.render();
     this.addListeners();
   }
-  addDeleteListener(listener: Function) {
+  onDelete(listener: Function) {
     this.handler = listener;
   }
   addListeners() {
@@ -115,6 +118,7 @@ export default class Magnet {
       this.element.style.left = this.x + "px";
       this.element.style.width = this.width + "px";
       this.element.style.height = this.height + "px";
+      this.element.style.zIndex = String(this.zIndex);
       this.textSpan.innerHTML = this.text;
     }
   }

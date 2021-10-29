@@ -19,13 +19,14 @@ export class Fridge {
     this.addButton.addEventListener("click", () => {
       this.count++;
       let magnet = new Magnet(this.count);
-      magnet.addDeleteListener(() => this.deleteMagnet(magnet.id));
+      magnet.onDelete(() => this.deleteMagnet(magnet.id));
       this.magnets.push(magnet);
       console.log(magnet);
       magnet.element.addEventListener("mousedown", (event: MouseEvent) => {
         let div = <HTMLDivElement>event.target;
         console.log(div);
-        div.style.zIndex = String(this.count + 1);
+        magnet.zIndex = Math.max(...this.magnets.map((m) => m.zIndex)) + 1;
+        magnet.render();
       });
       this.current = this.magnets.length;
       this.render();
