@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App</title>
+    <script src="https://cdn.tiny.cloud/1/s50o1drzeq136sblv5lon7ji7r5esiq2o5ycwl1kwwypxa91/tinymce/5/tinymce.min.js
+    "></script>
+    <script type="text/javascript">
+      tinymce.init({
+        selector: "#tinymce",
+      });
+    </script>
     <script defer src="../dist/index.bundle.js"></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -20,11 +27,16 @@
         <span id="current"></span>
       </div>
     </div>
-    <div class="container overlay">
+    <div class="container overlay overlay-login">
       <div class="overlay-content">
         <p>nazwa lodowki:</p>
         <input id="fridge-inp" type="text" />
         <div id="start" class="submit">gud</div>
+      </div>
+    </div>
+    <div class="container overlay overlay-tinymce">
+      <div class="tiny-container">
+        <textarea id="tinymce" cols="30" rows="10"></textarea>
       </div>
     </div>
   </body>
