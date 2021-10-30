@@ -1,9 +1,16 @@
 export const root = document.documentElement;
 export interface MagnetOpt {
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-  zIndex: number;
+  id: string;
+  x: string;
+  y: string;
+  height: string;
+  width: string;
+  zIndex: string;
   text: string;
+}
+export interface FridgeOpt {
+  id: number;
+  name: string;
+  count: number;
+  current: number;
 }

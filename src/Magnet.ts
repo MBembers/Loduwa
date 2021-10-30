@@ -1,7 +1,8 @@
 import * as consts from "./consts";
 import * as tinymce from "tinymce";
 export default class Magnet {
-  id: number;
+  fridgeName: string;
+  id: number = -1;
   x: number;
   y: number;
   xOffset: number;
@@ -20,24 +21,32 @@ export default class Magnet {
   editButton: HTMLDivElement;
   textSpan: HTMLParagraphElement;
   handler: Function;
-  constructor(id: number, options?: consts.MagnetOpt) {
+  renderHandler: Function;
+  constructor(
+    fridgeName: string,
+    count: number,
+    renderHandler: Function,
+    options?: consts.MagnetOpt
+  ) {
     if (options) {
-      this.id = id;
-      this.x = options.x;
-      this.y = options.y;
-      this.height = options.height;
-      this.width = options.width;
-      this.zIndex = options.zIndex;
+      this.id = parseInt(options.id);
+      this.x = parseInt(options.x);
+      this.y = parseInt(options.y);
+      this.height = parseInt(options.height);
+      this.width = parseInt(options.width);
+      this.zIndex = parseInt(options.zIndex);
       this.text = options.text;
     } else {
-      this.id = id;
       this.x = 150;
       this.y = 200;
       this.width = 250;
       this.height = 250;
-      this.zIndex = id;
-      this.text = "essa";
+      this.zIndex = count;
+      this.text = "aaaaaa";
+
+      this.addToDatabase();
     }
+    this.fridgeName = fridgeName;
     this.element = document.createElement("div");
     this.element.className = "magnet";
     this.element.style.top = this.y + "px";
@@ -52,14 +61,14 @@ export default class Magnet {
     this.editButton.className = "edit-btn";
     this.textSpan = document.createElement("p");
     this.textSpan.className = "text-span";
-    this.textSpan.id = "text-span" + id;
+    this.textSpan.id = "text-span" + this.id;
 
     document.querySelector(".main").appendChild(this.element);
     this.element.appendChild(this.textSpan);
     this.element.appendChild(this.editButton);
     this.element.appendChild(this.deleteButton);
     this.element.appendChild(this.resizeButton);
-
+    this.renderHandler = renderHandler;
     this.render();
     this.addListeners();
   }
@@ -77,6 +86,7 @@ export default class Magnet {
       console.log("DOWN");
     });
     document.addEventListener("mouseup", (event: MouseEvent) => {
+      if (this.isDragged || this.isResized) this.saveToDatabase();
       this.isDragged = false;
       this.isResized = false;
       this.element.style.backgroundColor = "white";
@@ -113,8 +123,10 @@ export default class Magnet {
       console.log(this.handler);
       if (this.handler) {
         console.log("DELETE");
+        this.deleteFromDatabase();
         this.element.remove();
         this.handler();
+        this.renderHandler();
       }
     });
     this.editButton.addEventListener("click", () => {
@@ -137,5 +149,40 @@ export default class Magnet {
       this.element.style.zIndex = String(this.zIndex);
       this.textSpan.innerHTML = this.text;
     }
+  }
+  saveToDatabase() {
+    const dataToSend = this;
+    console.log("DATA TO SEND:", dataToSend);
+    fetch("../server/saveMagnet.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    });
+  }
+  addToDatabase() {
+    const dataToSend = this;
+    console.log("DATA TO SEND:", dataToSend);
+    fetch("../server/addMagnet.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => response.json())
+      .then((data) => (this.id = parseInt(data[0].id)));
+  }
+  deleteFromDatabase() {
+    const dataToSend = this;
+    console.log("DATA TO SEND:", dataToSend);
+    fetch("../server/deleteMagnet.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    });
   }
 }
