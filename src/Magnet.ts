@@ -1,5 +1,5 @@
 import * as consts from "./consts";
-import tinymce from "../node_modules/tinymce/tinymce";
+import * as tinymce from "tinymce";
 export default class Magnet {
   id: number;
   x: number;
@@ -18,7 +18,7 @@ export default class Magnet {
   deleteButton: HTMLDivElement;
   resizeButton: HTMLDivElement;
   editButton: HTMLDivElement;
-  textSpan: HTMLSpanElement;
+  textSpan: HTMLParagraphElement;
   handler: Function;
   constructor(id: number, options?: consts.MagnetOpt) {
     if (options) {
@@ -50,7 +50,7 @@ export default class Magnet {
     this.resizeButton.className = "res-btn";
     this.editButton = document.createElement("div");
     this.editButton.className = "edit-btn";
-    this.textSpan = document.createElement("span");
+    this.textSpan = document.createElement("p");
     this.textSpan.className = "text-span";
     this.textSpan.id = "text-span" + id;
 
@@ -119,7 +119,12 @@ export default class Magnet {
     });
     this.editButton.addEventListener("click", () => {
       consts.root.style.setProperty("--tinymce-display", "flex");
-      tinymce.activeEditor.setContent("<p>AMOGUS</p>", { format: "html" });
+      tinymce.activeEditor.setContent(this.text, { format: "html" });
+      const saveBtn = document.querySelector("#save-tiny") as HTMLDivElement;
+      saveBtn.onclick = () => {
+        this.text = tinymce.activeEditor.getContent();
+        consts.root.style.setProperty("--tinymce-display", "none");
+      };
       console.log("EDIT");
     });
   }

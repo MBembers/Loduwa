@@ -33,6 +33,19 @@ export class Fridge {
     });
 
     this.current = this.magnets.length;
+    const parent = document.getElementsByClassName(
+      "tox-statusbar__text-container"
+    )[0] as HTMLDivElement;
+    console.log(parent);
+    const saveButton = document.createElement("button");
+    saveButton.id = "save-tiny";
+    const cancelButton = document.createElement("button");
+    cancelButton.id = "cancel-tiny";
+    cancelButton.addEventListener("click", () => {
+      consts.root.style.setProperty("--tinymce-display", "none");
+    });
+    parent.appendChild(saveButton);
+    parent.appendChild(cancelButton);
   }
   deleteMagnet(id: number) {
     this.magnets = this.magnets.filter((m) => m.id !== id);

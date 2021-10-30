@@ -38,6 +38,14 @@ body {
 .tox {
   width: 1000px;
 }
+.text-span {
+  font-size: 20px;
+  color: darkblue;
+  width: 90%;
+  height: 90%;
+  margin-top: 20px;
+  overflow: auto;
+}
 .tiny-container {
   min-width: 10px;
   min-height: 5px;
@@ -98,4 +106,23 @@ body {
   right: 50px;
   width: 200px;
   height: 100px;
+}
+#save-tiny {
+  width: 40px;
+  height: 40px;
+  background-image: url(https://iconarchive.com/download/i48662/custom-icon-design/pretty-office-7/Save.ico);
+  background-size: contain;
+}
+#cancel-tiny {
+  width: 40px;
+  height: 40px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/1024px-Crystal_button_cancel.svg.png);
+  background-size: contain;
+}
+.tox-statusbar {
+  height: auto !important;
+}
+
+.tox-statusbar__branding {
+  display: none !important;
 }
