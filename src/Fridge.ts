@@ -2,14 +2,14 @@ import * as consts from "./consts";
 import Magnet from "./Magnet";
 
 export class Fridge {
-  id: number = -1;
-  magnets: Magnet[] = [];
-  count: number;
-  current: number;
-  name: string;
-  label: HTMLDivElement = document.querySelector("#f-name");
-  addButton: HTMLDivElement = document.querySelector("#add-btn");
-  counters: HTMLDivElement[] = [
+  private id: number = -1;
+  private magnets: Magnet[] = [];
+  private count: number;
+  private current: number;
+  private name: string;
+  private label: HTMLDivElement = document.querySelector("#f-name");
+  private addButton: HTMLDivElement = document.querySelector("#add-btn");
+  private counters: HTMLDivElement[] = [
     document.querySelector("#counter"),
     document.querySelector("#current"),
   ];
@@ -38,6 +38,7 @@ export class Fridge {
               mag.zIndex = Math.max(...this.magnets.map((m) => m.zIndex)) + 1;
               mag.render();
             });
+            mag.onDelete(() => this.deleteMagnet(mag.id));
             this.magnets.push(mag);
           }
         } else {

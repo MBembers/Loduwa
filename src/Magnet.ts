@@ -1,27 +1,27 @@
 import * as consts from "./consts";
 import * as tinymce from "tinymce";
 export default class Magnet {
-  fridgeName: string;
-  id: number = -1;
-  x: number;
-  y: number;
-  xOffset: number;
-  yOffset: number;
-  xresize: number;
-  yresize: number;
-  isDragged: boolean;
-  isResized: boolean;
-  height: number;
-  width: number;
-  zIndex: number;
-  text: string;
-  element: HTMLDivElement;
-  deleteButton: HTMLDivElement;
-  resizeButton: HTMLDivElement;
-  editButton: HTMLDivElement;
-  textSpan: HTMLParagraphElement;
-  handler: Function;
-  renderHandler: Function;
+  private fridgeName: string;
+  public id: number = -1;
+  private x: number;
+  private y: number;
+  private xOffset: number;
+  private yOffset: number;
+  private xresize: number;
+  private yresize: number;
+  private isDragged: boolean;
+  private isResized: boolean;
+  private height: number;
+  private width: number;
+  public zIndex: number;
+  private text: string;
+  public element: HTMLDivElement;
+  private deleteButton: HTMLDivElement;
+  private resizeButton: HTMLDivElement;
+  private editButton: HTMLDivElement;
+  private textSpan: HTMLParagraphElement;
+  private handler: Function;
+  private renderHandler: Function;
   constructor(
     fridgeName: string,
     count: number,
@@ -36,6 +36,7 @@ export default class Magnet {
       this.width = parseInt(options.width);
       this.zIndex = parseInt(options.zIndex);
       this.text = options.text;
+      this.fridgeName = fridgeName;
     } else {
       this.x = 150;
       this.y = 200;
@@ -43,10 +44,10 @@ export default class Magnet {
       this.height = 250;
       this.zIndex = count;
       this.text = "aaaaaa";
+      this.fridgeName = fridgeName;
 
       this.addToDatabase();
     }
-    this.fridgeName = fridgeName;
     this.element = document.createElement("div");
     this.element.className = "magnet";
     this.element.style.top = this.y + "px";
